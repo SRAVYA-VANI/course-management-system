@@ -4,28 +4,29 @@ use teacherstudent
 
 create table student(
 stid int primary key,
-firstname varchar(50),
+firstname varchar(50) not null,
 middlename varchar(50),
 lastname varchar(50),
-emaiid varchar(60),
-passwords varchar(30)
+emaiid varchar(60) not null,
+passwords varchar(30),
+teacher int foreign key references teacher(teacherid)
 )
+drop table student
 
 create table teacher(
 teacherid int primary key,
-tname varchar(50),
-emaiid varchar(50),
+tname varchar(50) not null,
+emaiid varchar(50) not null,
 password varchar(50)
 )
 
-create database course
-
-use course
 
 create table course(
-coursename varchar(50),
+coursename varchar(50) primary key,
 courseid int,
 startdate date,
 enddate date,
-
+instructorid int foreign key references teacher(teacherid),
+stuid int foreign key references student(stid)
 )
+drop table course
